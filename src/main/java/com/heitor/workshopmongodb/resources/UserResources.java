@@ -45,8 +45,7 @@ public class UserResources {
 		System.out.println(id);
 		System.out.println(user);
 		
-		return ResponseEntity.ok().body(new UserDTO(user));
-		
+		return ResponseEntity.ok().body(new UserDTO(user));		
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
@@ -58,9 +57,14 @@ public class UserResources {
 		
 		System.out.println(user);
 		System.out.println(uri);
-		return ResponseEntity.created(uri).build();
-		
-		
+		return ResponseEntity.created(uri).build();	
+	}
+	
+	@RequestMapping(value = "/{id}", method  = RequestMethod.DELETE)
+	public ResponseEntity<Void> delete(@PathVariable String id){
+		service.delete(id);
+		System.out.println("delete: "+id);
+		return ResponseEntity.noContent().build();
 	}
 
 }
