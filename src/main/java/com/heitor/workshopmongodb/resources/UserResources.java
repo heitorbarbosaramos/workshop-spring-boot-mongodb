@@ -66,5 +66,13 @@ public class UserResources {
 		System.out.println("delete: "+id);
 		return ResponseEntity.noContent().build();
 	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> atualiza(@RequestBody UserDTO userDto,@PathVariable String id){
+		User newObj = service.fromDto(userDto);
+		newObj.setId(id);
+		newObj = service.atualiza(newObj);
+		return ResponseEntity.noContent().build();
+	}
 
 }
