@@ -73,12 +73,14 @@ public class UserResources {
 		User newObj = service.fromDto(userDto);
 		newObj.setId(id);
 		newObj = service.atualiza(newObj);
+		System.out.println("Atualizar "+newObj);
 		return ResponseEntity.noContent().build();
 	}
 
 	@RequestMapping(value = "/{id}/post",method = RequestMethod.GET)
 	public ResponseEntity<List<Post>> findPosts(@PathVariable String id){
 		User user = service.findById(id);
+		System.out.println("Find Post User ID: "+id);
 		return ResponseEntity.ok().body(user.getPost());		
 	}
 }
