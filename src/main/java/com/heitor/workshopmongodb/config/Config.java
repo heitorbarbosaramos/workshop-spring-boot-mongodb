@@ -1,6 +1,7 @@
 package com.heitor.workshopmongodb.config;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.TimeZone;
 
@@ -10,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.heitor.workshopmongodb.domain.Post;
 import com.heitor.workshopmongodb.domain.User;
+import com.heitor.workshopmongodb.dto.AuthorDTO;
 import com.heitor.workshopmongodb.repository.PostRepostory;
 import com.heitor.workshopmongodb.repository.UserRepostory;
 
@@ -37,10 +39,13 @@ public class Config implements CommandLineRunner {
 		
 		postRepository.deleteAll();
 		
-		Post p1 = new Post(null, sdf.parse("21/03/2019"), "Partiu...", "Estou indo embora pra São Paulo", maria);
-		Post p2 = new Post(null, sdf.parse("22/03/2019"), "Bom dia", "Acordei muito feliz!!!", maria);
+		Post p1 = new Post(null, sdf.parse("21/03/2019"), "Partiu...", "Estou indo embora pra São Paulo", new AuthorDTO(maria));
+		Post p2 = new Post(null, sdf.parse("22/03/2019"), "Bom dia", "Acordei muito feliz!!!", new AuthorDTO(maria));
 		
 		postRepository.saveAll(Arrays.asList(p1,p2));
+		
+		maria.getPost().addAll(Arrays.asList(p1,p2));
+		userRepository.save(maria);
 
 	}
 

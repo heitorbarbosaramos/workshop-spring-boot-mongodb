@@ -4,21 +4,19 @@ import java.io.Serializable;
 
 import com.heitor.workshopmongodb.domain.User;
 
-public class UserDTO implements Serializable{
+public class AuthorDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private String id;
 	private String name;
-	private String email;
 	
-	public UserDTO() {
+	public AuthorDTO() {
 	}
 
-	public UserDTO(User obj) {
+	public AuthorDTO(User user) {
 		super();
-		this.id = obj.getId();
-		this.name = obj.getName();
-		this.email = obj.getEmail();
+		this.id = user.getId();
+		this.name = user.getName();
 	}
 
 	public String getId() {
@@ -37,16 +35,8 @@ public class UserDTO implements Serializable{
 		this.name = name;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	@Override
 	public String toString() {
-		return "UserDTO [id=" + id + ", name=" + name + ", email=" + email + "]";
+		return "AuthorDTO [id=" + id + ", name=" + name + "]";
 	}
 }
